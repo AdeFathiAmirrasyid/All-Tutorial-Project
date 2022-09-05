@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM DATA DIRI</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      #info {
+        margin: 0 auto;
+        width: 500px;
+        height: auto;
+        text-align: center;
+        background-color: aqua;
+        border: 5px solid black;
+      }
+      .formDataDiri {
+        font-size: 32px;
+        font-weight: bold;
+        display: block;
+        margin: 20px;
+      }
+      .nama,
+      .gender,
+      .textArea {
+        display: inline-block;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+      button {
+        margin: 10px;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      h5{
+        width: 50px;
+        height: 20px;
+        line-height: 20px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        background-color: aliceblue;
+        border: 1px solid black;
+      }
+      #showname,
+      #showJenis,
+      #showArea {
+        display: none;
+      }
+      #name,
+      #jeniskelamin,
+      #txtArea {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">
+      <form action="">
+        <label for="" class="formDataDiri">FORM DATA DIRI</label><br />
+        <div id="box">
+          <label for="name" id="nama">Nama :</label>
+          <label for="name" id="showname">Text Name</label>
+          <input type="text" id="name" /><br />
+
+          <!-- jenis kelamin Text -->
+          <label for="jeniskelamin" class="gender">Jenis Kelamin :</label>
+          <label for="name" id="showJenis">Text Name</label>
+
+          <!-- jenis kelamin dropdown -->
+          <select name="jeniskelamin" id="jeniskelamin">
+            <option value="">Jenis Kelamin</option>
+            <option value="Laki-Laki">Laki - Laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <br />
+          <!-- Text Area-->
+          <label for="" class="textArea">TextArea :</label> <br />
+          <label for="" id="showArea">Text Area</label> <br />
+          <textarea name="" id="txtArea" cols="30" rows="10"></textarea><br />
+          <div id="box"></div>
+          <button id="btn_send">Post</button>
+          <h5>Load</h5>
+        </div>
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var showName = document.getElementById("showname");
+      var hiddenName = document.getElementById("name");
+      var showJenies = document.getElementById("showJenis");
+      var hiddenJenis = document.getElementById("jeniskelamin");
+      var showArea = document.getElementById("showArea");
+      var hiddenArea = document.getElementById("txtArea");
+
+      $(document).ready(function () {
+        $("form").submit(function (e) {
+          e.preventDefault();
+          var textname = $("input").val();
+          var textArea = $("textarea").val();
+          var textjenis = $("#jeniskelamin").val();
+
+          $("#showJenis").text(textjenis);
+          $("#showname").text(textname);
+          $("#showArea").text(textArea);
+
+          // event click
+          $.post("form_post.php", {
+            name: textname,
+            jenis_kelamin: textjenis,
+            textArea: textArea,
+          }).done(function (data) {
+            $("#box").html(data);
+          });
+          //   hidden and show
+          showName.style.display = "inline";
+          hiddenName.style.display = "none";
+          showJenis.style.display = "inline";
+          hiddenJenis.style.display = "none";
+          showArea.style.display = "inline ";
+          hiddenArea.style.display = "none ";
+        });
+      });
+
+      $("h5").click(function () {
+        $("#box").load("data.html");
+        $.get("data.json").done(function(data){
+            console.log(data.name)
+        });
+      });
+    </script>
+  </body>
+</html>

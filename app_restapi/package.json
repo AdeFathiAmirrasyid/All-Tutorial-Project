@@ -1,0 +1,35 @@
+{
+  "name": "app_restapi",
+  "version": "1.0.0",
+  "description": "aplikasi rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdeFathiAmirrasyid/app_restapi.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "node",
+    "js"
+  ],
+  "author": "fathi_insani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdeFathiAmirrasyid/app_restapi/issues"
+  },
+  "homepage": "https://github.com/AdeFathiAmirrasyid/app_restapi#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  }
+}
